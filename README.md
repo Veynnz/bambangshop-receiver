@@ -83,6 +83,9 @@ You can install Postman via this website: https://www.postman.com/downloads/
 This is the place for you to write reflections:
 
 ### Mandatory (Subscriber) Reflections
+1. RwLock allows multiple threads to read notifications at the same time while ensuring only one can modify them. This improves performance since reading doesn’t require exclusive access. If we used Mutex, any thread locking it would block all others, even those that only need to read, causing unnecessary slowdowns.
+
+2. Rust prevents direct mutation of static variables to avoid data races. We use lazy_static! with RwLock to safely share and modify data across threads. Without this, Rust wouldn’t allow mutations because it can’t guarantee safe concurrent access.
 
 #### Reflection Subscriber-1
 
