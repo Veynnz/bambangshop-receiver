@@ -83,10 +83,15 @@ You can install Postman via this website: https://www.postman.com/downloads/
 This is the place for you to write reflections:
 
 ### Mandatory (Subscriber) Reflections
+
+#### Reflection Subscriber-1
 1. RwLock allows multiple threads to read notifications at the same time while ensuring only one can modify them. This improves performance since reading doesn’t require exclusive access. If we used Mutex, any thread locking it would block all others, even those that only need to read, causing unnecessary slowdowns.
 
 2. Rust prevents direct mutation of static variables to avoid data races. We use lazy_static! with RwLock to safely share and modify data across threads. Without this, Rust wouldn’t allow mutations because it can’t guarantee safe concurrent access.
 
-#### Reflection Subscriber-1
-
 #### Reflection Subscriber-2
+1. I followed the tutorial steps without exploring src/lib.rs because the tutorial already covered the key components pretty well. Since it provided clear guidance on implementing models, services, and repositories, I focused on completing those first. Exploring extra files without a specific need could have led to unnecessary complications. However, if I encountered issues or needed a deeper understanding of the project’s structure, I would have checked additional files like lib.rs to see how different modules interact.
+
+2. The Observer pattern makes it easy to add more subscribers because the main app simply pushes updates without needing to track individual subscribers. New receivers can subscribe without changing the main app’s logic, allowing the system to run smoothly. However, if multiple instances of the main app were running, managing subscriptions could become tricky. Without proper coordination, duplicate or missed notifications might occur.
+
+3. I tried using the Postman collection to test multiple product types across different receiver instances. Running receivers on separate ports (8001, 8002, 8003) helped verify that notifications were correctly sent to different subscribers. Improving the Postman collection was useful, as it made debugging and validating the system much easier, especially in a scenario with multiple subscribers.
